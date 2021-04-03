@@ -1,0 +1,332 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+
+}
+
+<head>
+    <title>Training Application Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 15px;
+      color: #fff;
+      z-index: 2;
+      }
+      h2 {
+      font-weight: 400;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 20px 0 #095484;
+      }
+      .banner {
+      position: relative;
+      height: 30px;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder, a {
+      color: #095484;
+      }
+      .item input:hover, .item select:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #095484;
+      color: #095484;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+     .item-right {
+            position: center;
+            margin: 10px 0;
+        }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=checkbox]  {
+      display: none;
+      }
+      label.check {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 10px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      span.required {
+      margin-left: 0;
+      color: red;
+      }
+      label.check:before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+      border: 1px solid #095484;
+      }
+      input[type=checkbox]:checked + .check:before {
+      background: #095484;
+      }
+      label.check:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 4px;
+      width: 8px;
+      height: 4px;
+      border: 3px solid #fff;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=checkbox]:checked + label:after {
+      opacity: 1;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #095484;
+      font-size: 12px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #0666a3;
+      }
+      @@media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input, .city-item input {
+      width: calc(50% - 20px);
+      }
+      .city-item select {
+      width: calc(50% - 8px);
+      }
+      .name-order input {
+            width: calc(30% - 30px);
+        }
+
+      .name-item1 input, .city-item input {
+            width: calc(30% - 20px);
+        }
+       .name-item2 {
+            width: 100%;
+        }
+        .name-item3 {
+            width: 30%;
+            float:left;
+        }
+        .name-item4 {
+            width: 30%;
+            float: left;
+        }
+        .name-item5 {
+            width: 30%;
+            float:left;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <div class="testbox">
+        <form>
+            <div class="banner">
+                <h1>Order Update Form</h1>
+            </div>
+            <div id="divOrderSearch">
+                <h2>Search Order</h2>
+                <div id="divFirstSearch">
+                    <div class="name-order">
+                        <input type="text" name="txtOrder" id="txtOrder" placeholder="Order#" />
+                        <input type="text" name="txtSource" id="txtSource" placeholder="Source#" />
+                        <button onclick="GetDetails();">Search</button>
+                    </div>
+                </div>
+                <div id="divSecondSearch" style="display:none;">
+                    <button onclick="ShowSearch();">Search Again</button>
+                </div>
+            </div>
+            <div id="divAllDetails" style="display:none;">
+                <div id="divOrderDetails">
+                    <h2>Order Details</h2>
+                    <div class="item">
+                        <div class="name-item2">
+                            <div class="name-item3">
+                                <p>Field 1</p>
+                                <input type="text" name="txtfield1"  id="txtfield1" placeholder="First" disabled="disabled" />
+                            </div>
+                            <div class="name-item4">
+                                <p>Field 2</p>
+                                <input type="text" name="txtfield2"  id="txtfield2" disabled="disabled" />
+                            </div>
+                            <div class="name-item5">
+                                <p>Field 3</p>
+                                <input type="text" name="txtfield3"  id="txtfield3" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="name-item2">
+                            <div class="name-item3">
+                                <p>Field 4</p>
+                                <input type="text" name="txtfield4"  id="txtfield4" disabled="disabled" />
+                            </div>
+                            <div class="name-item4">
+                                <p>Field 5</p>
+                                <input type="text" name="txtfield5"  id="txtfield5" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divOrderHistory" style="width:20%;padding-top:150px">
+                    <h2>Order History</h2>
+                    <table id="tblOrderHistory" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Order Status</th>
+                                <th>Order Date</th>
+                                <th>Other Info</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblOrderHistorybody">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="divShippingDetails" style="padding-top:50px">
+                    <h2>Shipping Details</h2>
+                    <div class="item">
+                        <div class="name-item2">
+                            <div class="name-item3">
+                                <p>Name</p>
+                                <input type="text" name="name" placeholder="First" disabled="disabled" />
+                            </div>
+                            <div class="name-item4">
+                                <p>Name</p>
+                                <input type="text" name="name" placeholder="First" disabled="disabled" />
+                            </div>
+                            <div class="name-item5">
+                                <p>Name</p>
+                                <input type="text" name="name" placeholder="First" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="name-item2">
+                            <div class="name-item3">
+                                <p>Name</p>
+                                <input type="text" name="name" placeholder="First" disabled="disabled" />
+                            </div>
+                            <div class="name-item4">
+                                <p>Name</p>
+                                <input type="text" name="name" placeholder="First" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divShippingHistory" style="width:20%;padding-top:150px">
+                    <h2>Shipping History</h2>
+                    <table id="example" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Order Status</th>
+                                <th>Order Date</th>
+                                <th>Other Info</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Processed</td>
+                                <td>12/01/2020</td>
+                                <td>This</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/script.js")
+</body>
+
